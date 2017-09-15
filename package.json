@@ -1,0 +1,16 @@
+{
+  "name": "fe-base",
+  "version": "1.0.0",
+  "description": "Frontend Build System and Helper",
+  "main": "base.js",
+  "bin": {
+    "fe": "./bin/fe"
+  },
+  "dependencies": {
+    "colors": "~1.1.2",
+    "node-yaml": "~3.1.1"
+  },
+  "keywords": [ "fe", "frontend", "build", "html", "scss", "javascript" ],
+  "author": "Jan Lengowski <jlengowski@gmail.com>",
+  "license": "MIT"
+}
