@@ -7,28 +7,26 @@
  * @author    Jan Lengowski <jlengowski@gmail.com>
  * @copyright Jan Lengowski 2017
  */
-var plugin = () => {
+var plugin = function text () {
 
-  var base = this
-    , args = arguments
-    , text = args[0]
+  var args   = arguments
     , length = args.length
-    , params = [].slice(1, args)
-  
-  if (length > 2 && typeof args[1] == "string")
+    , params = [].slice.call(args, 1)
 
-    return text.replace(/({(\d{1,})})/g, 
-      function (matches, index) { return args[index] }
+  if (length > 1 && typeof args[1] !== "object")
+
+    return args[0].replace(/({(\d{1,})})/g, 
+      function (a, b, index) { return params[index] })
 
   if (length == 2 && typeof args[1] == "object")
 
-    return text.replace(/({(\w{1,})})/g, 
-      function (matches, index) { return args[1][index] }
-
-  return args[0] || ""
+    return args[0].replace(/({(\w{1,})})/g, 
+      function (a, b, name) { return params[0][name] })
   
-}
+  return args[0] || ""
 
-plugin.name = "text"
+} 
+
+plugin.info = { name: "text", version: "1.0.0" }
 
 module.exports = plugin

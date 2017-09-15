@@ -1,14 +1,12 @@
-var colors = require("colors"), base = {}
+"use strict"
 
-base.load_plugins = (dir) => {
-  var plugin = require("./" + dir)
-  if (this[plugin.name])
-    return console.log("Plugin", plugin.name.green, "already loaded.")
-  this[plugin.name] = () => plugin.apply(this, arguments)
-}
+var fs = require("fs")
+  , path = require("path")
+  , load_plugins = require("require-dir")
+  , base
 
-base.plugin = {}
-base.errors = []
-base.result = false
+var plugin_dir = __filename.replace(/base\/main\.js$/, "base_plugins")
+
+base = load_plugins(plugin_dir)
 
 module.exports = base
